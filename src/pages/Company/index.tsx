@@ -1,6 +1,7 @@
 import React from 'react';
+import { FaSearch, FaEye, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { Wrapper } from './styles';
-import {FaSearch, FaEye, FaPencilAlt, FaTrashAlt} from 'react-icons/fa';
 
 const Company: React.FC = () => {
   return (
@@ -13,10 +14,10 @@ const Company: React.FC = () => {
       <div className="section">
         <div className="search-box">
           <FaSearch />
-          <input type="search" name="search"  placeholder="Buscar empresas..."/>
+          <input type="search" name="search" placeholder="Buscar empresas..." />
         </div>
         <div className="button">
-          <button>cadastrar empresa</button>
+          <Link to="/companies/register">cadastrar empresa</Link>
         </div>
       </div>
       <div className="table-box">

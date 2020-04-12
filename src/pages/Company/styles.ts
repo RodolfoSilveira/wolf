@@ -48,7 +48,7 @@ export const Wrapper = styled.div`
     }
 
     > div.button {
-      > button {
+      > a {
         border: none;
         outline: none;
         background-color: #738BA4;
