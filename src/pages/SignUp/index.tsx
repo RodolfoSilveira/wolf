@@ -27,8 +27,6 @@ const SignUp: React.FC = () => {
         <Input name="name" type="text" placeholder="Seu nome" />
         <Input name="email" type="email" placeholder="Seu e-mail" />
         <Input name="cpf" type="text" placeholder="CPF" />
-        <Input name="cnpj" type="text" placeholder="CNPJ" />
-        <Input name="companyName" type="text" placeholder="Nome da empresa" />
         <Input
           name="password"
           type="password"
