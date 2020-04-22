@@ -17,7 +17,7 @@ export const List = styled.ul`
       align-items: center;
     `}
 
-  a {
+  a, button {
     border-radius: 18px;
     padding: 10px;
     text-transform: uppercase;
@@ -54,5 +54,10 @@ export const List = styled.ul`
           display: none;
         `}
     }
+  }
+
+  button {
+    outline: none;
+    border: none;
   }
 `;

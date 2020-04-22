@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   FaHome,
   FaTasks,
@@ -9,8 +10,15 @@ import {
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import {List} from './styles';
+import { Creators  as authCreators } from '../../store/ducks/auth';
 
 const LinkBox: React.FC = () => {
+  const dispatch = useDispatch();
+
+  function handleSignOut() {
+    dispatch(authCreators.signOut());
+  }
+
   return (
     <List>
       <Link to="/dashboard">
@@ -48,13 +56,13 @@ const LinkBox: React.FC = () => {
           <span>Empresas</span>
         </li>
       </Link>
-      <Link to="/dashboard">
+      <button onClick={handleSignOut}>
         <li>
           <FaSignOutAlt />
 
           <span>Sair</span>
         </li>
-      </Link>
+      </button>
     </List>
   );
 };

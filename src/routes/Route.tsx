@@ -9,9 +9,10 @@ export default function RouteWrapper({
   component: Component,
   isPrivate = false,
   ...rest
-}) {
-  const { signed } = store.getState().auth;
-
+}: any) {
+  const storeLock: any = store;
+  const { signed }: any = storeLock.getState().auth;
+  console.tron.log(signed)
   if (!signed && isPrivate) {
     return <Redirect to="/" />;
   }

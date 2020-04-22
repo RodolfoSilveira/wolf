@@ -20,7 +20,7 @@ export const Creators = {
     payload: { email, password },
   }),
 
-  signInSuccess: (token: string, user: string[]) => ({
+  signInSuccess: (token: string, user: any) => ({
     type: Types.SIGN_IN_SUCCESS,
     payload: { token, user },
   }),
@@ -28,11 +28,10 @@ export const Creators = {
   signUpRequest: (
     name: string,
     email: string,
-    cpf: string,
     password: string
   ) => ({
     type: Types.SIGN_UP_REQUEST,
-    payload: { name, email, cpf, password },
+    payload: { name, email, password },
   }),
 
   signFailure: () => ({
@@ -44,15 +43,15 @@ export const Creators = {
   }),
 };
 
-const auth = (state = INITIAL_STATE, actions: any) => {
+export default function auth (state = INITIAL_STATE, action: any) {
   return produce(state, draft => {
-    switch (actions) {
+    switch (action.type) {
       case Types.SIGN_IN_REQUEST: {
         draft.loading = true;
         break;
       }
       case Types.SIGN_IN_SUCCESS: {
-        draft.token = actions.payload.token;
+        draft.token = action.payload.token;
         draft.signed = true;
         draft.loading = false;
         break;
@@ -70,5 +69,3 @@ const auth = (state = INITIAL_STATE, actions: any) => {
     }
   });
 };
-
-export default auth;

@@ -1,10 +1,11 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import logo from '../../assets/images/logo.png';
 import { Login } from './styles';
-import history from '../../services/history';
+import { Creators  as authCreators } from '../../store/ducks/auth';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -19,8 +20,11 @@ interface Auth {
 }
 
 const SignIn: React.FC = () => {
-  function handleSubmit() {
-    history.push('/dashboard');
+  const dispatch = useDispatch();
+  const loading = useSelector((state: any) => state.auth.loading);
+
+  function handleSubmit({ email, password }: any) {
+    dispatch(authCreators.signInRequest(email, password))
   }
 
   return (
@@ -35,7 +39,7 @@ const SignIn: React.FC = () => {
           placeholder="Sua senha secreta"
         />
 
-        <button type="submit">Acessar</button>
+        <button type="submit">{loading ? 'Carregando...' : 'Acessar'}</button>
         <Link to="/register">Criar conta gratuita</Link>
       </Form>
     </Login>

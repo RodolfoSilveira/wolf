@@ -8,22 +8,17 @@ export function* signIn({ payload }: any) {
   try {
     const { email, password } = payload;
 
-    const response = yield call(api.post, 'sessions', {
+    const response = yield call(api.post, 'session', {
       email,
       password,
     });
 
     const { token, user } = response.data;
-
-    if (!user.provider) {
-      toast.error('Usuário não é prestador');
-      return;
-    }
-
+  
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(AuthCreators.signInSuccess(token, user));
-
+    
     history.push('/dashboard');
   } catch (err) {
     toast.error('Falha na autenticação, verifique seus dados');
@@ -33,12 +28,11 @@ export function* signIn({ payload }: any) {
 
 export function* signUp({ payload }: any) {
   try {
-    const { name, email, cpf, password } = payload;
-
-    yield call(api.post, 'users', {
+    const { name, email, password } = payload;
+    
+    yield call(api.post, 'user', {
       name,
       email,
-      cpf,
       password,
     });
 
